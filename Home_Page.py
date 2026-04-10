@@ -84,7 +84,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-content = pt(st.file_uploader("Upload your Content"))
+content = pt(st.file_uploader("Upload your Content",type=["txt","png"]))
 question = st.chat_input("Enter Your message")
 st.write("Try asking:")
 if st.button("Summarize this"):
