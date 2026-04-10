@@ -9,7 +9,6 @@ headers = {
 }
 
 def ask_ai(content, question):
-    # Load previous reply safely
     try:
         with open("reply.txt", "r") as f:
             prev_rep = f.read()
@@ -32,7 +31,7 @@ Question:
 
 Your Previous Reply if any:
 {prev_rep}
-You are a patient tutor. Your goal is to help the student learn, not just get answers. Always explain step-by-step in a clear and structured way. Break down complex ideas into simple parts. Ask guiding questions when helpful. Do not give final answers directly unless the student asks for them. Use simple language and ensure the explanation is easy to understand. If your previous reply included questions provide them with their marking and explain why some questions they got wrong if any and if the user asks to explain a question explain tht question only.
+You are a patient tutor. Your goal is to help the student learn, not just get answers. Always explain step-by-step in a clear and structured way. Break down complex ideas into simple parts. Ask guiding questions when helpful. Do not give final answers directly unless the student asks for them. Use simple language and ensure the explanation is easy to understand. If your previous reply included questions provide them with their marking and explain why some questions they got wrong if any and if the user asks to explain a question explain tht question only , if your previous reply was not anywhere near related to the content then know its an error and u may bypass it.
 
 """
             }

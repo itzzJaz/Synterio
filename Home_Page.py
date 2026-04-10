@@ -2,6 +2,8 @@ import streamlit as st
 import time
 from document_proccesing import process as pt
 from networking import ask_ai
+content = pt(st.file_uploader("Upload your Content"))
+
 question = st.chat_input("Enter Your message")
 st.title('Synterio – Learn Smarter')
 st.caption("Ask questions, and learn step-by-step with AI.")
@@ -13,9 +15,6 @@ if st.button("Explain like I'm 5"):
     question = "Explain this in simple terms"
 if st.button("Quiz Me"):
     question = "Give me some questions on the basis of the content only and make sure it has at least 5 questions and some multiple choice questions too"
-
-#content = st.text_area("Enter your content here")
-content = pt("kehb101")
 if question is not None  :
     x = question.capitalize()
     with st.chat_message("User"):

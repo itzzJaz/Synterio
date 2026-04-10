@@ -1,9 +1,12 @@
 import fitz
-def process(name):
-    doc = fitz.open(f'{name}.pdf')
-    print(doc)
-    text=""
-    for pages in doc:
-        text += pages.get_text()
-    return text[:8000]
 
+def process(uploaded_file):
+    if uploaded_file is not  None:
+        pdf_bytes = uploaded_file.read()
+        doc = fitz.open(stream=pdf_bytes, filetype="pdf")
+        text = ""
+        for page in doc:
+            text += page.get_text()
+        return text
+    else:
+        return ""
