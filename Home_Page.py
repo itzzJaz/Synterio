@@ -2,11 +2,46 @@ import streamlit as st
 import time
 from document_proccesing import process as pt
 from networking import ask_ai
-content = pt(st.file_uploader("Upload your Content"))
+st.set_page_config(
+    page_title="Synterio",
+    page_icon="✍️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+st.markdown("""
+<div style="text-align:center; padding-top:10px; padding-bottom:10px;">
+    <h1 style="margin-bottom:5px;">Synterio – Learn Smarter</h1>
+    <p style="color:gray; font-size:18px; margin-top:0;">
+        Ask questions, and learn step-by-step with AI.
+    </p>
+</div>
+<style>
+    .main {
+        background-color: #0e1117;
+    }
 
+    .stButton>button {
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        
+        border: 2px solid #F5276C;
+        font-weight: 600;
+    }
+
+    .stButton>button:hover {
+        
+        border: 2px solid #d81e5b;
+        
+    }
+
+    .stTextInput>div>div>input {
+        border-radius: 10px;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+content = pt(st.file_uploader("Upload your Content"))
 question = st.chat_input("Enter Your message")
-st.title('Synterio – Learn Smarter')
-st.caption("Ask questions, and learn step-by-step with AI.")
 st.write("Try asking:")
 if st.button("Summarize this"):
     question = "Summarize this"
@@ -18,7 +53,7 @@ if st.button("Quiz Me"):
 if question is not None  :
     x = question.capitalize()
     with st.chat_message("User"):
-        st.write(x)
+        st.markdown(x)
     with st.spinner('Processing...'):
         result = ask_ai(content,question)
         try:
@@ -32,6 +67,6 @@ if question is not None  :
                 placeholder.markdown(typed_text)
                 time.sleep(0.005)
         except:
-            st.write(result)
+            st.markdown(result)
 
 
