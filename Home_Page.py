@@ -2,9 +2,51 @@ import streamlit as st
 import time
 from document_proccesing import process as pt
 from networking import ask_ai
+import random
+names = [
+    "Aarav",
+    "Aanya",
+    "Aditya",
+    "Ananya",
+    "Arjun",
+    "Diya",
+    "Ishaan",
+    "Ira",
+    "Kabir",
+    "Kiara",
+    "Krishna",
+    "Meera",
+    "Neha",
+    "Rohan",
+    "Riya",
+    "Sara",
+    "Shiv",
+    "Saanvi",
+    "Vikram",
+    "Zara"
+]
+Greetings = [
+    "Hello",
+    "Hi",
+    "Hey",
+    "Howdy",
+    "What’s up",
+    "Yo",
+    "Hi there",
+    "Hey there",
+    "Greetings",
+    "Salutations",
+    "Nice to see you",
+    "Long time no see",
+    "How are you",
+    "How’s it going",
+    "Welcome",
+    "Hey friend",
+    "Good day"
+]
 st.set_page_config(
     page_title="Synterio",
-    page_icon="✍️",
+    page_icon="📘",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -54,19 +96,23 @@ if question is not None  :
     x = question.capitalize()
     with st.chat_message("User"):
         st.markdown(x)
-    with st.spinner('Processing...'):
-        result = ask_ai(content,question)
-        try:
-            reply = result["choices"][0]["message"]["content"]
+    with st.spinner('Thinking...'):
+        with st.chat_message("Assistant"):
+            result = ask_ai(content,question)
+            try:
+                reply = result["choices"][0]["message"]["content"]
 
-            typed_text = ""
-            placeholder = st.empty()
+                typed_text = ""
+                placeholder = st.empty()
 
-            for char in reply:
-                typed_text += char
-                placeholder.markdown(typed_text)
-                time.sleep(0.005)
-        except:
-            st.markdown(result)
+                for char in reply:
+                    typed_text += char
+                    placeholder.markdown(typed_text)
+                    time.sleep(0.005)
+            except:
+                st.markdown(result)
+else:
+    with st.chat_message("Assistant"):
+        st.markdown(f"{random.choice(Greetings)}, I am {random.choice(names)} and I am going to be your tutor today")
 
 
