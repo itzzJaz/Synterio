@@ -58,6 +58,8 @@ Strict Behavior Constraints
 
     Previous Reply:
     {prev_rep}
+    
+    And  do not provide the answers only guide the student
     """
             }
         ],

@@ -1,8 +1,15 @@
 import streamlit as st
+st.set_page_config(
+    page_title="Synterio",
+    page_icon="icon.png",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 import time
 from document_proccesing import process as pt
 from networking import ask_ai
 import random
+
 names = [
     "Aarav",
     "Aanya",
@@ -44,12 +51,7 @@ Greetings = [
     "Hey friend",
     "Good day"
 ]
-st.set_page_config(
-    page_title="Synterio",
-    page_icon="📘",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+
 st.markdown("""
 <div style="text-align:center; padding-top:10px; padding-bottom:10px;">
     <h1 style="margin-bottom:5px;">Synterio – Learn Smarter</h1>
