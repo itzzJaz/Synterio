@@ -54,7 +54,7 @@ Greetings = [
 
 st.markdown("""
 <div style="text-align:center; padding-top:10px; padding-bottom:10px;">
-    <h1 style="margin-bottom:5px;">Synterio – Learn Smarter</h1>
+    <h1 style="margin-bottom:5px;">Synterio – Your learning companion</h1>
     <p style="color:gray; font-size:18px; margin-top:0;">
         Ask questions, and learn step-by-step with AI.
     </p>
@@ -83,10 +83,17 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
+if "prev_rep" not in st.session_state:
+    st.session_state.prev_rep = ""
 content = pt(st.file_uploader("Upload your Content",type=["txt","pdf"]))
 question = st.chat_input("Enter Your message")
-st.write("Try asking:")
+st.write("Try asking:" )
+option = st.selectbox(
+    "Choose your level:",
+    ["Beginner", "School", "Exam prep", "Advanced"]
+)
+
+
 if st.button("Summarize this"):
     question = "Summarize this"
 
@@ -100,7 +107,7 @@ if question is not None  :
         st.markdown(x)
     with st.spinner('Thinking...'):
         with st.chat_message("Assistant"):
-            result = ask_ai(content,question)
+            result = ask_ai(content,question,option)
             try:
                 reply = result["choices"][0]["message"]["content"]
 

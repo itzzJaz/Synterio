@@ -8,7 +8,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-def ask_ai(content, question):
+def ask_ai(content, question,type_q):
     prev_rep = st.session_state.get("prev_rep", "")
 
     payload = {
@@ -52,10 +52,10 @@ Strict Behavior Constraints
                 "content": f"""
     Context:
     {content if content else "NO_CONTEXT"}
-
+    I am currently {type_q} , So the answer should be based on my level
     Question:
     {question}
-
+    
     Previous Reply:
     {prev_rep}
     
